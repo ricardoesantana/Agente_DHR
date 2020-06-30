@@ -31,4 +31,4 @@ def draw():
     v.seek(f.position)
     
     textSize(20)
-    text('Pontos: ' + str(contador), 10, 30)
+    text('Pontos2: ' + str(contador), 10, 30)
