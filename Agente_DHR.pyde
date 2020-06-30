@@ -2,41 +2,33 @@
 # Daniel Shiffman
 # http://natureofcode.com
 
-# Seeking "vehicle" follows the mouse position
-
-# Implements Craig Reynold's autonomous steering behaviors
-# One vehicle "seeks"
-# See: http://www.red3d.com/cwr/
+# Equipe DHR
 
 from Vehicle import Vehicle
-#from Food import Food
+from Food import Food
+
+
 
 def setup():
-    global v, food, mouse
+    global v, f, contador
     size(640, 360)
-    #velocity = PVector(0, 0)
     v = Vehicle(width / 2, height / 2)
-    #food = Food(random(width), random(height), velocity)
+    f = Food(random(width), random(height))
     
-    w = random(width)
-    h = random(height)
-    mouse = PVector(w, h)
+    contador = 0
 
+    
 def draw():
     background(51)
     
-    #mouse = PVector(mouseX, mouseY)
-
-    # Draw an ellipse at the mouse position
-    fill(127)
-    stroke(200)
-    strokeWeight(2)
-    ellipse(mouse.x, mouse.y, 7, 7)
-
-    # Call the appropriate steering behaviors for our agents
-    v.arrive(mouse)
+    global contador
+        
     v.update()
     v.display()
+    contador += f.update(v)
+
+    f.display()
+    v.seek(f.position)
     
-    #food.update()
-    #food.display()
+    textSize(20)
+    text('Pontos: ' + str(contador), 10, 30)

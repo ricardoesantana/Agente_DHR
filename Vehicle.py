@@ -48,6 +48,35 @@ class Vehicle():
         steer.limit(self.maxforce)  # Limit to maximum steering force
 
         self.applyForce(steer)
+        
+    #STEER = DESIRED MINUS VELOCITY
+    def seek2(self, target):
+         
+        desired = PVector.sub(target, self.position) # A vector pointing from the location to the target
+    
+        #cale to maximum speed
+        desired.setMag(self.maxspeed)
+    
+        # Steering = Desired minus velocity
+        steer = p5.Vector.sub(desired, self.velocity)
+        steer.limit(self.maxforce)  # Limit to maximum steering force
+    
+        this.applyForce(steer)
+    
+    # A method that calculates a steering force towards a target
+    # STEER = DESIRED MINUS VELOCITY
+    def seek(self, target):
+
+        # A vector pointing from the location to the target
+        desired = target - self.position
+
+        # Scale to maximum speed
+        desired.setMag(self.maxspeed)
+
+        steer = desired - self.velocity
+        steer.limit(self.maxforce)  # Limit to maximum steering force
+
+        self.applyForce(steer)     
 
     def display(self):
         # Draw a triangle rotated in the direction of velocity
